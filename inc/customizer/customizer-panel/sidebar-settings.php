@@ -33,14 +33,6 @@ $wp_customize->add_control(new online_magazine_Tab_Control($wp_customize, 'onlin
                 'online_magazine_shop_layout'
             ),
             'active' => true,
-        ),
-        array(
-            'name' => esc_html__('Styles', 'viral-mag'),
-            'icon' => 'dashicons dashicons-art',
-            'fields' => array(
-                'online_magazine_sidebar_style',
-                'online_magazine_content_widget_title_color'
-            ),
         )
     ),
 )));
@@ -165,29 +157,3 @@ $wp_customize->add_control(new online_magazine_Selector_Control($wp_customize, '
         //'active_callback' => 'online_magazine_is_woocommerce_activated'
 )));
 
-$wp_customize->add_setting('online_magazine_sidebar_style', array(
-    'sanitize_callback' => 'online_magazine_sanitize_text',
-    'default' => 'sidebar-style2',
-    'transport' => 'postMessage'
-));
-
-$wp_customize->add_control(new online_magazine_Selector_Control($wp_customize, 'online_magazine_sidebar_style', array(
-    'section' => 'online_magazine_sidebar_settings_section',
-    'label' => esc_html__('Sidebar Style', 'viral-mag'),
-    'class' => 'vm-half-width',
-    'options' => array(
-        'sidebar-style1' => ONLINE_MAGAZINE_CUSTOMIZER_URL . 'customizer-panel/assets/images/sidebar-styles/sidebar-style1.png',
-        'sidebar-style2' => ONLINE_MAGAZINE_CUSTOMIZER_URL . 'customizer-panel/assets/images/sidebar-styles/sidebar-style2.png'
-    )
-)));
-
-$wp_customize->add_setting('online_magazine_content_widget_title_color', array(
-    'default' => '#000000',
-    'sanitize_callback' => 'sanitize_hex_color',
-    'transport' => 'postMessage'
-));
-
-$wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'online_magazine_content_widget_title_color', array(
-    'section' => 'online_magazine_sidebar_settings_section',
-    'label' => esc_html__('Sidebar Widget Title Color', 'viral-mag')
-)));

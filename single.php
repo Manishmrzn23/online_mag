@@ -10,23 +10,25 @@
 get_header();
 ?>
 
-<?php while (have_posts()) : the_post();
 
-	$author_id=get_the_author_meta('ID');
-	$author_url=get_author_posts_url($author_id);
-	$author_name=get_the_author();
-
-	$category_detail=get_the_category( $post->ID );
-	$tag_detail=get_the_tags( $post->ID );
-	customSetPostViews(get_the_ID());
-	?>
-	<?php $sidebar=get_theme_mod('online_magazine_page_layout');
+	
+	<?php $sidebar=get_theme_mod('online_magazine_post_layout');
 	?>
 	<div class="site-content single-entry atbs-single-style-2">
 		<div class="atbs-block atbs-block--fullwidth single-entry-wrap">
 			<div class="container">
 				<div class="row">
 					<div class="atbs-main-col" role="main">
+							<?php while (have_posts()) : the_post();?>
+								<?php
+									$author_id=get_the_author_meta('ID');
+									$author_url=get_author_posts_url($author_id);
+									$author_name=get_the_author();
+
+									$category_detail=get_the_category( $post->ID );
+									$tag_detail=get_the_tags( $post->ID );
+									customSetPostViews(get_the_ID());
+								?>
 								<!-- Post Single -->
 								<article class="atbs-block post post--single has-post-thumbnail">
 									<div class="single-content">
@@ -213,7 +215,7 @@ get_header();
 		                        		</article>
 		                        	</div>
 		                        </div>
-									<?php endwhile;?>
+							<?php endwhile;?>
 		                    <!-- Related Posts -->
 		                    <?php
 		                    $related = get_posts( 
@@ -274,41 +276,21 @@ get_header();
 		                    	</div>
 		                    </div>
 		                    <!-- Comments Section -->
-	                    <div class="comments-section single-entry-section">
-	                    	<div id="comments" class="comments-area">
+	                    
 		                    		<?php 
 		                    		if (comments_open() || get_comments_number()) :
-		                    			comments_template();
-		                    		endif; ?>
+					                    comments_template();
+					                endif; ?>
 		                    	<!-- .comment-list -->
-	                   		</div>	
-	                    </div>
+	                   		
                     </div>
-                </div>
-		            <!-- .atbs-main-col -->
-		        <?php if($sidebar=='right-sidebar'){
-					if (is_active_sidebar('online-magazine-sidebar-right')) {
-					    ?>
-					    <div class="atbs-sub-col js-sticky-sidebar">
-					        <?php dynamic_sidebar('online-magazine-sidebar-right'); ?>
-					    </div><!-- #secondary -->
-					    <?php
-					}
-				}?>
-			    
-			    <?php if($sidebar=='left-sidebar'){
-					if (is_active_sidebar('online-magazine-sidebar-left')) {
-					    ?>
-					    <div class="atbs-sub-col js-sticky-sidebar">
-					        <?php dynamic_sidebar('online-magazine-sidebar-left'); ?>
-					    </div>
-					    <?php
-					}
-				}?>
-		            <!-- .atbs-sub-col -->
-               </div>
+		                <!-- .atbs-main-col -->
+					        <?php get_sidebar()?>
+				        <!-- .atbs-sub-col -->
+                </div>         
             </div>
         </div>
     </div>
+   
 <?php
 get_footer();

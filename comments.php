@@ -7,59 +7,71 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Online_Magazine
+ * @package WordPress
+ * @subpackage Twenty_Twenty_One
+ * @since Twenty Twenty-One 1.0
  */
 
 /*
  * If the current post is protected by a password and
- * the visitor has not yet entered the password we will
+ * the visitor has not yet entered the password,
  * return early without loading the comments.
  */
-if (post_password_required()) {
+if ( post_password_required() ) {
     return;
 }
+
+$twenty_twenty_one_comment_count = get_comments_number();
 ?>
+<div class="comments-section single-entry-section">
+    <div id="comments" class="comments-area">
 
-
-
-    <?php // You can start editing here -- including this comment!  ?>
-    <div class="comments-title">
-	    <?php if (have_comments()) : ?>
-	    	<div class="comment-count__inner comment-form-block-heading block-heading">
-		        <h4 class="block-heading__title title-style-2">
-		            <?php
-		            printf(// WPCS: XSS OK.
-		                    esc_html(_nx('%d Comment', '%d Comments', get_comments_number(), 'comments title', 'online-magazine')), number_format_i18n(get_comments_number())
-		            );
-		            ?>
-		        </h4>
-		    </div>
-		    </div>
-
-        <ol class="comment-list">
-            <?php
-            wp_list_comments(array(
-                'callback'=>'online_magazine_comment',
-                'style'=>'ol'
-            ));
-            ?>
-        </ol><!-- .comment-list -->
-
-        <?php the_comments_navigation(); ?>
-
-    <?php endif; // Check for have_comments().  ?>
-
-    <?php
-    // If comments are closed and there are comments, let's leave a little note, shall we?
-    if (!comments_open()) :
-        ?>
-        <p class="no-comments"><?php esc_html_e('Comments are closed.', 'online-magazine'); ?></p>
         <?php
-    endif;
+        if ( have_comments() ) :
+            ?>
+            <h2 class="comments-title">
+                <?php if ( '1' === $twenty_twenty_one_comment_count ) : ?>
+                    <?php esc_html_e( '1 comment', 'twentytwentyone' ); ?>
+                <?php else : ?>
+                    <?php
+                    printf(
+                        /* translators: %s: Comment count number. */
+                        esc_html( _nx( '%s comment', '%s comments', $twenty_twenty_one_comment_count, 'Comments title', 'twentytwentyone' ) ),
+                        esc_html( number_format_i18n( $twenty_twenty_one_comment_count ) )
+                    );
+                    ?>
+                <?php endif; ?>
+            </h2><!-- .comments-title -->
 
-    $comment_args=array(
-    	'title_reply' => 'Leave A Reply', 
-    );
-    comment_form($comment_args);
-    ?>
+            <ol class="comment-list">
+                <?php
+                wp_list_comments(
+                    array(
+                        'callback'=>'online_magazine_comment',
+                        'avatar_size' => 50,
+                        'style'       => 'ol',
+                        'short_ping'  => true,
+                    )
+                );
+                ?>
+            </ol><!-- .comment-list -->
 
+            <?php the_comments_navigation(); ?>
+
+            <?php if ( ! comments_open() ) : ?>
+                <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'twentytwentyone' ); ?></p>
+            <?php endif; ?>
+        <?php endif; ?>
+
+        <?php
+        comment_form(
+            array(
+                'title_reply'        => esc_html__( 'Leave A Reply', 'twentytwentyone' ),
+                'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
+                'title_reply_after'  => '</h2>',
+            )
+        );
+        ?>
+
+    </div><!-- #comments -->
+</div>

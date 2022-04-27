@@ -3,7 +3,9 @@
 function online_magazine_dynamic_styles() {
     $custom_css = $tablet_css = $mobile_css = "";
     $color = get_theme_mod('online_magazine_template_color', '#cf0701');
- $website_layout = get_theme_mod('online_magazine_website_layout', 'wide');
+    $website_layout = get_theme_mod('online_magazine_website_layout', 'wide');
+    $sidebar_width = get_theme_mod('online_magazine_sidebar_width', 30);
+    $primary_width = 100 - 4 - $sidebar_width;
     if ($website_layout == 'wide') {
         $container_width = get_theme_mod('online_magazine_wide_container_width', 1170);
     } elseif ($website_layout == 'fluid') {
@@ -34,6 +36,10 @@ function online_magazine_dynamic_styles() {
                 max-width:{$container_width}%; 
         }";
     }
+     $custom_css .= "
+        #secondary{ width:{$sidebar_width}%}
+    ";
+
 
       $custom_css .= online_magazine_typography_css('online_magazine_body', 'html, body, button, input, select, textarea', array(
         'family' => 'Poppins',
@@ -446,17 +452,7 @@ function online_magazine_dynamic_styles() {
 
     /* =============== Sidebar layout =============== */
 
-     if(get_theme_mod('online_magazine_page_layout')=='left-sidebar'){
-        $custom_css .= ".container .row{
-        display: flex;
-        flex-direction: row-reverse;";
-        }
-
-        if(get_theme_mod('online_magazine_page_layout')=='right-sidebar'){
-        $custom_css .= ".container .row{
-        display: flex;";
-        }
-
+ 
 
 
      /* =============== Background Color =============== */

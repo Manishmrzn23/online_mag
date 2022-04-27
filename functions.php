@@ -244,8 +244,8 @@ function online_magazine_widgets_init() {
         'name' => esc_html__('Left Sidebar', 'online-magazine'),
         'id' => 'online-magazine-sidebar-left',
         'description' => '',
-        'before_widget' => '',
-        'after_widget' => '',
+        'before_widget' =>'<section id="%1$s" class="widget %2$s">',
+        'after_widget' =>'</section>',
         'before_title' => '',
         'after_title' => '',
     ));
@@ -274,8 +274,14 @@ function online_magazine_scripts() {
 	
 
 
-	wp_enqueue_script( 'online-magazine-navigation', get_template_directory_uri() . '/js/navigation.js', array(), ONLINE_MAGAZINE_VERSION, true );
+
 	// wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.js', array(), ONLINE_MAGAZINE_VERSION, true );
+	wp_enqueue_script( 'online-magazine-navigation', get_template_directory_uri() . '/js/navigation.js', array(), ONLINE_MAGAZINE_VERSION, true );
+	wp_enqueue_script('theia-sticky-sidebar', get_template_directory_uri() . '/js/theia-sticky-sidebar.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+    wp_enqueue_script('online-magazine-custom', get_template_directory_uri() . '/js/custom.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+    wp_enqueue_script('resize-sensor', get_template_directory_uri() . '/js/ResizeSensor.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+    wp_enqueue_script('headroom', get_template_directory_uri() . '/js/headroom.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+
 	wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true );
 	wp_enqueue_script( 'vendors', get_template_directory_uri() . '/assets/js/vendors.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

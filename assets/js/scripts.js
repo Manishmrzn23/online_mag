@@ -491,7 +491,7 @@ var ATBS = ATBS || {};
 						ATBS.documentOnScroll.windowScrollTop = $window.scrollTop();
 
 						// Functions to call here
-						if (!ATBS.header.smartAffix.isDisabled && !ATBS.header.smartAffix.isDestroyed) {
+						if (!ATBS.header.smartAffix.isDisabled && !ATBS.header.smartAffix.isDestroyed && $('body').hasClass('om-sticky-header')) {
 							ATBS.header.smartAffix.eventScroll(ATBS.documentOnScroll.windowScrollTop);
 						}
 
@@ -1110,11 +1110,13 @@ var ATBS = ATBS || {};
 				var $stickyHeader = $('.js-sticky-header');
 
 				var marginTop = ($stickyHeader.length) ? ($stickyHeader.outerHeight() + 20) : 0; // check if there's sticky header
+				if ($('body').hasClass('om-sticky-sidebar')) {
 				if ( $.isFunction($.fn.theiaStickySidebar) ) {
 					$stickySidebar.theiaStickySidebar({
 						additionalMarginTop: marginTop,
 						additionalMarginBottom: 20,
 					});
+				}
 				}
 			}, 250); // wait a bit for precise height;
 		},

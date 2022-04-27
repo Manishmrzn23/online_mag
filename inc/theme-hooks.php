@@ -17,6 +17,10 @@ function online_magazine_body_classes_body($classes) {
         $online_magazine_sidebar_layout = get_theme_mod('online_magazine_page_layout', 'right-sidebar');
     } elseif (is_singular('post')) {
         $online_magazine_sidebar_layout = get_theme_mod('online_magazine_post_layout', 'right-sidebar');
+    } elseif (online_magazine_is_woocommerce_activated() && is_woocommerce()) {
+        $online_magazine_sidebar_layout = get_theme_mod('online_magazine_shop_layout', 'right-sidebar');
+    } elseif (is_archive() && !is_home() && !is_search()) {
+        $online_magazine_sidebar_layout = get_theme_mod('online_magazine_archive_layout', 'right-sidebar');
     } elseif (is_home()) {
         $online_magazine_sidebar_layout = get_theme_mod('online_magazine_home_blog_layout', 'right-sidebar');
     } elseif (is_search()) {

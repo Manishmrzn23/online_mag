@@ -12,7 +12,7 @@ get_header();
 
 
 
-
+<?php $sidebar=get_theme_mod('online_magazine_search_layout');?>
 <main id="primary" class="site-main">
 
 	
@@ -60,9 +60,9 @@ get_header();
 
 							endif;
 								?>
-
 						</div>
 					</div>
+					<?php get_sidebar()?>
 				</div>
 			</div>
 		</div>
