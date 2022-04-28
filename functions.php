@@ -50,7 +50,7 @@ function online_magazine_setup() {
 		register_nav_menus(
 			array(
 				'primary' => esc_html__( 'Primary', 'online-magazine' ),
-				'footer'=> esc_html__( 'footer', 'online-magazine' )
+				'footer'=> esc_html__( 'Footer', 'online-magazine' )
 			)
 		);
 

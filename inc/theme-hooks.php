@@ -64,3 +64,20 @@ function online_magazine_body_classes_body($classes) {
 }
 
 add_filter('body_class', 'online_magazine_body_classes_body');
+
+function online_magazine_convert_to_negative($arg) {
+    return('-' . $arg);
+}
+
+function online_magazine_remove_category($query) {
+    $category = get_theme_mod('online_magazine_blog_cat');
+    $category_array = explode(',', $category);
+    $category_array = array_map('online_magazine_convert_to_negative', $category_array);
+    $category = implode(',', $category_array);
+    if ($query->is_home() && $query->is_main_query()) {
+        $query->set('cat', $category);
+   
+    }
+}
+
+add_action('pre_get_posts', 'online_magazine_remove_category');

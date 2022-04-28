@@ -8,7 +8,7 @@
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
  * @package WordPress
- * @subpackage Twenty_Twenty_One
+ * @subpackage online_magazine_One
  * @since Twenty Twenty-One 1.0
  */
 
@@ -21,27 +21,32 @@ if ( post_password_required() ) {
     return;
 }
 
-$twenty_twenty_one_comment_count = get_comments_number();
+$online_magazine_one_comment_count = get_comments_number();
 ?>
 <div class="comments-section single-entry-section">
     <div id="comments" class="comments-area">
+       
 
         <?php
-        if ( have_comments() ) :
-            ?>
-            <h2 class="comments-title">
-                <?php if ( '1' === $twenty_twenty_one_comment_count ) : ?>
-                    <?php esc_html_e( '1 comment', 'twentytwentyone' ); ?>
-                <?php else : ?>
-                    <?php
-                    printf(
-                        /* translators: %s: Comment count number. */
-                        esc_html( _nx( '%s comment', '%s comments', $twenty_twenty_one_comment_count, 'Comments title', 'twentytwentyone' ) ),
-                        esc_html( number_format_i18n( $twenty_twenty_one_comment_count ) )
-                    );
-                    ?>
+        if ( have_comments() ) :?>
+        <div class="comment-title" >
+            <div class="comment-count__inner comment-form-block-heading block-heading">
+                <h4 class="block-heading__title title-style-2">
+                    <?php if ( '1' === $online_magazine_one_comment_count ) : ?>
+                        <?php esc_html_e( '1 comment', 'online-magazine' ); ?>
+                    <?php else : ?>
+                        <?php
+                        printf(
+                            /* translators: %s: Comment count number. */
+                            esc_html( _nx( '%s comment', '%s comments', $online_magazine_one_comment_count, 'Comments title', 'online-magazine' ) ),
+                            esc_html( number_format_i18n( $online_magazine_one_comment_count ) )
+                        );
+                        ?>
+                </h4><!-- .comments-title -->
+            </div>
+        </div>
                 <?php endif; ?>
-            </h2><!-- .comments-title -->
+      
 
             <ol class="comment-list">
                 <?php
@@ -59,18 +64,20 @@ $twenty_twenty_one_comment_count = get_comments_number();
             <?php the_comments_navigation(); ?>
 
             <?php if ( ! comments_open() ) : ?>
-                <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'twentytwentyone' ); ?></p>
+                <p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'online-magazine' ); ?></p>
             <?php endif; ?>
         <?php endif; ?>
 
         <?php
+    if (!is_single()) {
         comment_form(
             array(
-                'title_reply'        => esc_html__( 'Leave A Reply', 'twentytwentyone' ),
-                'title_reply_before' => '<h2 id="reply-title" class="comment-reply-title">',
-                'title_reply_after'  => '</h2>',
+                'title_reply'        => esc_html__( 'Leave A Reply', 'online-magazine' ),
+                'title_reply_before' => '<div class="block-heading comment-form-block-heading"><h3 class="block-heading__title title-style-2">',
+                'title_reply_after'  => '</h3></div>',
             )
         );
+    }
         ?>
 
     </div><!-- #comments -->

@@ -1,16 +1,40 @@
-<?php
-/**
- * The template for displaying archive pages
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package Online_Magazine
- */
 
+<?php
 get_header();
+if(is_front_page()){
 ?>
 
+<div class="site-content">
+    <!-- module-a -->
+    <?php get_template_part('template-parts/section', 'featured'); ?>
+    <!-- module-a -->
+
+    <!-- module-b -->
+    <?php get_template_part('template-parts/section', 'news1'); ?>
+    <!-- module-b -->
+
+    <!-- post-grid-a -->
+    <?php get_template_part('template-parts/section', 'news2'); ?> 
+    <!-- post-grid-a -->
+
+    <!-- listing-grid-b -->
+    <?php get_template_part('template-parts/section', 'news3'); ?> 
+    <!-- listing-grid-b -->
+
+    <!-- listing-grid-a -->
+    <?php get_template_part('template-parts/section', 'news4'); ?>
+    <!-- listing-grid-a -->
+
+    <?php get_template_part('template-parts/section', 'sidebar'); ?>
+
+    <!-- post-grid-b -->
+    <?php get_template_part('template-parts/section', 'news5'); ?>
+    <!-- post-grid-b -->
+
+</div><!-- .site-content -->
+
 <?php
+}else{
     $sidebar=get_theme_mod('online_magazine_archive_layout');
     $online_magazine_archive_content = get_theme_mod('online_magazine_archive_content', 'excerpt');
     $online_magazine_archive_excerpt_length = get_theme_mod('online_magazine_archive_excerpt_length', '100');
@@ -105,7 +129,7 @@ get_header();
             </div>
         </div>
     </div>
-   <!-- sidebar -->
-
-
-<?php get_footer();
+    <!-- sidebar -->
+<?php
+}
+get_footer();

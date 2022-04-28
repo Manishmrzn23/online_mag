@@ -28,6 +28,7 @@ if (!class_exists('Online_Magazine_Register_Customizer_Controls')) {
             require ONLINE_MAGAZINE_CUSTOMIZER_PATH . 'customizer-panel/footer-settings.php';
             require ONLINE_MAGAZINE_CUSTOMIZER_PATH . 'customizer-panel/style-settings.php';
             require ONLINE_MAGAZINE_CUSTOMIZER_PATH . 'customizer-panel/sidebar-settings.php';
+            require ONLINE_MAGAZINE_CUSTOMIZER_PATH . 'customizer-panel/blog-settings.php';
             /** For Additional Hooks */
             do_action('online_magazine_new_options', $wp_customize);
         }

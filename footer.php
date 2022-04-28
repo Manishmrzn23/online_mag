@@ -26,9 +26,9 @@ $online_magazine_footer_copyright=get_theme_mod('online_magazine_footer_copyrigh
             <div class="section-row">
                 <div class="section-column section-column-left text-left">
                     <div class="site-logo">
-                        <a href="home-1.html">
+                          <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
                             <img src="<?php echo $online_magazine_footer_logo;?>" alt="logo" width="108">
-                        </a>
+                          </a> 
                     </div>
                 </div>
                 <div class="section-column section-column-center text-center">
@@ -50,7 +50,7 @@ $online_magazine_footer_copyright=get_theme_mod('online_magazine_footer_copyrigh
                         if (!empty($social_icons)) {
                             foreach ($social_icons as $social_icon) {
                                 if ($social_icon->enable === 'yes' && !empty($social_icon->link)) {
-                                    echo '<li><a href="' . esc_attr($social_icon->link) . '" target="_blank"><i class="' . esc_attr($social_icon->icon) . '"></i></a></li>';
+                                    echo '<li><a href="' . esc_url(esc_attr($social_icon->link)) . '" target="_blank"><i class="' . esc_attr($social_icon->icon) . '"></i></a></li>';
                                 }
                             }
                         }?>
@@ -114,7 +114,7 @@ $online_magazine_footer_copyright=get_theme_mod('online_magazine_footer_copyrigh
         $online_magazine_enable_search = get_theme_mod('online_magazine_mh_show_search', true);
         if ($online_magazine_enable_search) {
             ?>
-            <button type="submit" class="mobile-header-btn js-search-dropdown-toggle">
+            <button type="submit" class="navigation-bar-btn js-search-dropdown-toggle">
                 <i class="mdicon mdicon-search"></i>
             </button>
             <?php
@@ -244,10 +244,10 @@ aria-labelledby="login-modal-label">
         <div class="atbs-offcanvas--inner js-perfect-scrollbar">
             <div class="atbs-offcanvas__section atbs-offcanvas__title border-bottom">
                 <h2 class="site-logo">
-                    <a href="home-1.html">
-                        <!-- logo open -->
-                        <img src="./img/logo.png" alt="logo">
-                        <!-- logo close -->
+                    <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                        <?php if ( has_custom_logo() ) : ?>
+                           <?php the_custom_logo(); ?>
+                       <?php endif; ?>
                     </a>
                 </h2>
                 <ul class="social-list list-horizontal">
@@ -264,58 +264,15 @@ aria-labelledby="login-modal-label">
             </a>
         </div>
         <div class="atbs-offcanvas__section atbs-offcanvas__section-navigation border-right">
-            <div class="atbs-offcanvas__section-navigation--wrap">
-                <div id="offcanvas-menu-desktop" class="menu-main-menu-container">
-                    <ul id="menu-main-menu-2" class="navigation navigation--offcanvas">
-                        <li class="menu-item-has-children current-menu-item">
-                            <a href="home-1.html">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="home-1.html">Home 1</a></li>
-                                <li><a href="home-2.html">Home 2</a></li>
-                                <li><a href="home-3.html">Home 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="single-1.html">Single Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="single-1.html">Single 1</a></li>
-                                <li><a href="single-2.html">Single 2</a></li>
-                                <li><a href="single-3.html">Single 3</a></li>
-                                <li><a href="single-4.html">Single 4</a></li>
-                                <li><a href="single-5.html">Single 5</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Archive</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item-has-children">
-                                    <a href="category-1.html">Category</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="category-1.html">Category 1</a></li>
-                                        <li><a href="category-2.html">Category 2</a></li>
-                                        <li><a href="category-3.html">Category 3</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="tags.html">Archive Tags</a></li>
-                                <li>
-                                    <a href="author.html">Author</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-has-children">
-                            <a href="#">Pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="page.html">Page</a></li>
-                                <li><a href="page-no-sidebar.html">Page No Sidebar</a></li>
-                                <li><a href="search.html">Search</a></li>
-                                <li><a href="typography.html">Typography</a></li>
-                                <li><a href="404.html">404</a></li>
-                            </ul>
-                        </li>
-                        <li class="menu-item-cat-3"><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
+             <?php
+                wp_nav_menu( array(
+                    'theme_location' => 'primary',
+                    'container' => 'false',
+                    'menu_class' => 'navigation navigation--offcanvas',
+                    'menu_id' => 'menu-main-menu-2',
+
+                ) );
+                ?>
         </div>
     </div>
 </div>

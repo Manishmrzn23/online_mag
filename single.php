@@ -33,30 +33,44 @@ get_header();
 								<article class="atbs-block post post--single has-post-thumbnail">
 									<div class="single-content">
 										<header class="single-header">
-											<?php
-											foreach ($category_detail as $cat ) {
-												?>
-												<a class="entry-cat post__cat--bg cat-theme-bg" href="<?php echo get_category_link($cat->cat_ID) ?>"><?php echo $cat->name; ?></a>
-												<?php
-											}
+											<?php  $online_magazine_single_categories = get_theme_mod('online_magazine_single_categories', true);
+										        if ($online_magazine_single_categories && 'post' === get_post_type()) {
+										            if ($category_detail) {											
+														foreach ($category_detail as $cat ) {
+															?>
+															<a class="entry-cat post__cat--bg cat-theme-bg" href="<?php echo get_category_link($cat->cat_ID) ?>"><?php echo $cat->name; ?></a>
+															<?php
+														}
+													}
+										        }			
 											?>
 											<h1 class="entry-title typescale-3_2"><?php echo get_the_title()?></h1>
 											<!-- Entry meta -->
 											<div class="entry-meta">
-												<span class="entry-author">
-													<a href="<?php echo esc_url($author_url); ?>"><img class="entry-author__avatar" src="<?php echo get_avatar_url($author_id)?>" alt="file not found">
-														<?php echo esc_attr($author_name);?></a>
-													</span>
+											<?php  $online_magazine_single_author = get_theme_mod('online_magazine_single_author', true);
+												if($online_magazine_single_author) {?>
+														<span class="entry-author">
+															<a href="<?php echo esc_url($author_url); ?>"><img class="entry-author__avatar" src="<?php echo get_avatar_url($author_id)?>" alt="file not found">
+																<?php echo esc_attr($author_name);?></a>
+														</span>
+												<?php }?>
+
+										    <?php  $online_magazine_single_date = get_theme_mod('online_magazine_single_date', true);
+												if($online_magazine_single_date) {?>
 													<span class="entry-time"><i class="mdicon mdicon-schedule"></i><time class="time" datetime="<?php echo get_the_date(); ?>" title="<?php echo get_the_date(); ?> at <?php echo get_the_time( 'G:i' ); ?>"><?php echo get_the_date(); ?></time></span>
+												<?php }?>
+
+											<?php  $online_magazine_single_post_views_count = get_theme_mod('online_magazine_single_post_views_count', true);
+												if($online_magazine_single_post_views_count) {?>
 													<span>
 														<i class="mdicon mdicon-visibility"></i><?php
 														$post_views_count = get_post_meta( get_the_ID(), 'post_views_count', true );
-
 														if ( ! empty( $post_views_count ) ) {
 															echo $post_views_count;
 														}
 														?>
 													</span>
+												<?php }?>
 											</div>
 										</header>
 											<div class="entry-thumb single-entry-thumb">
@@ -65,34 +79,39 @@ get_header();
 											<div class="single-body entry-content typography-copy">
 												<?php the_content()?>
 											</div>
-											<div class="entry-tags">
-												<ul class="post__tags">
-													
-													<?php
-													if ($tag_detail) {?>
-														<li class="entry-tags__icon"><i class="mdicon mdicon-local_offer"></i></li>
 
-														<?php
-														foreach ($tag_detail as $tag ) {
-															?>
-															<li><a class="post-tag" rel="tag" href="<?php echo get_tag_link($tag->term_id) ?>"><?php echo $tag->name; ?></a></li>
+											<?php  $online_magazine_single_tags = get_theme_mod('online_magazine_single_tags', true);
+												if($online_magazine_single_tags && 'post' === get_post_type()) {?>
+													<div class="entry-tags">
+														<ul class="post__tags">
+															
 															<?php
-														}
-													}
-													?>
-												</ul>
-											</div>
-											<?php
-											if ($tag_detail) {
-												$s = '';
-												$tag_url='';
-												foreach ($tag_detail as $tag) {
+															if ($tag_detail) {?>
+																<li class="entry-tags__icon"><i class="mdicon mdicon-local_offer"></i></li>
 
-													$tags=$tag->name;
-													$tag_url.=$s . $tags;
-													$s = ',';
-												}
-											}	
+																<?php
+																foreach ($tag_detail as $tag ) {
+																	?>
+																	<li><a class="post-tag" rel="tag" href="<?php echo get_tag_link($tag->term_id) ?>"><?php echo $tag->name; ?></a></li>
+																	<?php
+																}
+															}
+															?>
+														</ul>
+													</div>
+												<?php }?>
+
+											<?php
+												if ($tag_detail) {
+													$s = '';
+													$tag_url='';
+													foreach ($tag_detail as $tag) {
+
+														$tags=$tag->name;
+														$tag_url.=$s . $tags;
+														$s = ',';
+													}
+												}	
 											?>
 											<footer class="single-footer entry-footer ">
 												<div class="entry-info flexbox flexbox--middle">
@@ -146,6 +165,8 @@ get_header();
 		                        </article>
 		                          <!-- .single-content -->
 
+                        <?php  $online_magazine_single_author_box = get_theme_mod('online_magazine_single_author_box', true);
+						    if($online_magazine_single_author_box) {?>
 		                        <!-- Author Box -->
 		                        <div class="author-box single-entry-section">
 		                        	<div class="author-box__image">
@@ -163,14 +184,18 @@ get_header();
 		                        						<li><a href="https://www.facebook.com/sharer.php?u=<?php echo get_avatar_url($author_id);?>&t=<?php echo esc_attr($author_name);?>"><i class="mdicon mdicon-public"></i><span class="sr-only">Website</span></a></li>
 		                        						<li><a href="#"><i class="mdicon mdicon-twitter"></i><span class="sr-only">Twitter</span></a></li>
 		                        						<li><a href="#"><i class="mdicon mdicon-facebook"></i><span class="sr-only">Facebook</span></a></li>
-		                        						<li><a href="#"><span class="sr-only">Youtube</span></a></li>
+		                        						<li><a href="#"><i class="mdicon mdicon-youtube"></i><span class="sr-only">Youtube</span></a></li>
 		                        					</ul>
 		                        				</div>
 		                        			</div>
 		                        		</div>
 		                        	</div>
 		                        </div>
+	                        <?php }?>
 		                        <!-- Posts Navigation -->
+
+                     <?php  $online_magazine_single_prev_next_post = get_theme_mod('online_magazine_single_prev_next_post', true);
+						    if($online_magazine_single_prev_next_post) {?>
 		                        <?php 
 		                        $prevPost = get_previous_post();
 		                        $nextPost = get_next_post();
@@ -215,6 +240,7 @@ get_header();
 		                        		</article>
 		                        	</div>
 		                        </div>
+		                    <?php }?> 
 							<?php endwhile;?>
 		                    <!-- Related Posts -->
 		                    <?php
@@ -275,18 +301,28 @@ get_header();
 		                    		}?>
 		                    	</div>
 		                    </div>
-		                    <!-- Comments Section -->
-	                    
-		                    		<?php 
-		                    		if (comments_open() || get_comments_number()) :
-					                    comments_template();
-					                endif; ?>
-		                    	<!-- .comment-list -->
-	                   		
+		                    <!-- Comments Section -->    
+	                    		<?php 
+							        $online_magazine_single_comments = get_theme_mod('online_magazine_single_comments', true);
+							        // If comments are open or we have at least one comment, load up the comment template.
+							        if ($online_magazine_single_comments && (comments_open() || get_comments_number())) :
+							            comments_template();
+							        endif;
+						
+				                comment_form(
+						            array(
+						                'title_reply'        => esc_html__( 'Leave A Reply', 'online-magazine' ),
+						                'title_reply_before' => '<div class="block-heading comment-form-block-heading"><h3 class="block-heading__title title-style-2">',
+						                'title_reply_after'  => '</h3></div>',
+						            )
+						        );
+
+				                ?>
+	                    	<!-- .comment-list -->
                     </div>
-		                <!-- .atbs-main-col -->
-					        <?php get_sidebar()?>
-				        <!-- .atbs-sub-col -->
+		    <!-- .atbs-main-col -->
+		        <?php get_sidebar()?>
+		    <!-- .atbs-sub-col -->
                 </div>         
             </div>
         </div>
