@@ -375,6 +375,11 @@ require get_template_directory() . '/inc/theme-functions.php';
 require get_template_directory() . '/inc/theme-hooks.php';
 
 /**
+ * Content Hook Files
+ */
+require get_template_directory() . '/inc/hooks.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {

@@ -385,7 +385,7 @@ var ATBS = ATBS || {};
 	        	}
 
 	            // Set where from top fixed header starts showing up
-	            if( !this.$headerPlaceHolder.length ) {
+	            if( this.$headerPlaceHolder && !this.$headerPlaceHolder.length ) {
 	                this.offCheckpoint = 400;
 	            } else {
 	            	this.offCheckpoint = $(this.$headerPlaceHolder).offset().top + 400;
