@@ -97,7 +97,7 @@
                 }
 
                 // Create sticky sidebar
-                //o.sidebar.parents().css('-webkit-transform', 'none'); // Fix for WebKit bug - https://code.google.com/p/chromium/issues/detail?id=20574
+                o.sidebar.parents().css('-webkit-transform', 'none'); // Fix for WebKit bug - https://code.google.com/p/chromium/issues/detail?id=20574
                 o.sidebar.css({
                     'position': o.options.defaultPosition,
                     'overflow': 'visible',

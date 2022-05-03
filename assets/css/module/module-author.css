@@ -152,6 +152,8 @@
 }
 .atbs-offcanvas--inner {
     height: 100%;
+    padding: 20px;
+    margin: 20px;
 }
 @media (max-width:1199px) {
     .module-404 p {

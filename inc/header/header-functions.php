@@ -28,3 +28,14 @@ function online_magazine_header_logo() {
         <?php
     }
 }
+
+function online_magazine_main_navigation() {
+    wp_nav_menu(array(
+            'theme_location' => 'primary',
+            'container' => 'false',
+            'menu_class' => 'navigation navigation--main navigation--inline flexbox-wrap flexbox-right-x',
+            'menu_id' => 'menu-main-menu',
+            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+            'fallback_cb' => false,
+    ));
+}

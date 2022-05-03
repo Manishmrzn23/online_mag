@@ -219,17 +219,6 @@ add_action( 'after_setup_theme', 'online_magazine_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function online_magazine_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'online-magazine' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'online-magazine' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
 	 register_sidebar(array(
         'name' => esc_html__('Right Sidebar', 'online-magazine'),
         'id' => 'online-magazine-sidebar-right',
@@ -238,6 +227,16 @@ function online_magazine_widgets_init() {
         'after_widget' => '</section>',
         'before_title' => '',
         'after_title' => '',
+    ));
+
+	 register_sidebar(array(
+        'name' => esc_html__('Off-canvas Sidebar', 'online-magazine'),
+        'id' => 'online-magazine-sidebar-offcanvas',
+        'description' => '',
+        'before_widget' => '<div><section id="%1$s" class="widget %2$s">',
+        'after_widget' => '</section></div>',
+        'before_title' => '<h3 class="widget-title"><span>',
+        'after_title' => '</span></h3>',
     ));
 
 	 register_sidebar(array(
@@ -276,12 +275,11 @@ function online_magazine_scripts() {
 
 
 	// wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery.js', array(), ONLINE_MAGAZINE_VERSION, true );
+	wp_enqueue_script('jquery-sidebar','http://code.jquery.com/jquery.min.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+	wp_enqueue_script('sticky-sidebar', get_template_directory_uri() . '/js/sticky-sidebar/dist/theia-sticky-sidebar.min.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
+	wp_enqueue_script('resize-sensor', get_template_directory_uri() . '/js/sticky-sidebar/dist/ResizeSensor.min.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
 	wp_enqueue_script( 'online-magazine-navigation', get_template_directory_uri() . '/js/navigation.js', array(), ONLINE_MAGAZINE_VERSION, true );
-	wp_enqueue_script('theia-sticky-sidebar', get_template_directory_uri() . '/js/theia-sticky-sidebar.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
     wp_enqueue_script('online-magazine-custom', get_template_directory_uri() . '/js/custom.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
-    wp_enqueue_script('resize-sensor', get_template_directory_uri() . '/js/ResizeSensor.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
-    wp_enqueue_script('headroom', get_template_directory_uri() . '/js/headroom.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true);
-
 	wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true );
 	wp_enqueue_script( 'vendors', get_template_directory_uri() . '/assets/js/vendors.js', array('jquery'), ONLINE_MAGAZINE_VERSION, true );
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -346,10 +344,6 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/widgets/widget-personal-info.php';
 require get_template_directory() . '/inc/widgets/widget-fields.php';
 
-/**
- * Header Functions
- */
-require get_template_directory() . '/inc/header/header-functions.php';
 
 /**
  * Menu Icons
@@ -405,7 +399,7 @@ add_action( 'template_redirect', 'redreict_to_custom_404_page' );
 function redreict_to_custom_404_page(){
     // check if is a 404 error
     if( is_404()  ){
-        wp_redirect( home_url( '/404page/' ) );
+        wp_redirect( home_url( '/404.php' ) );
         exit();
     }
 }

@@ -25,15 +25,15 @@ if (!function_exists('online_magazine_sidebar_content')) {
 
         if (is_active_sidebar('online-magazine-sidebar-right') && $online_magazine_sidebar_layout == "right-sidebar") {
             ?>
-                <div class="atbs-sub-col js-sticky-sidebar">
-                    <?php dynamic_sidebar('online-magazine-sidebar-right'); ?>
+                <div class="atbs-sub-col  theiaStickySidebar">
+                    <?php dynamic_sidebar('online-magazine-sidebar-right '); ?>
                 </div>
             <?php
         }
 
         if (is_active_sidebar('online-magazine-sidebar-left') && $online_magazine_sidebar_layout == "left-sidebar") {
             ?>
-                <div class="atbs-sub-col js-sticky-sidebar">
+                <div class="atbs-sub-col  theiaStickySidebar">
                     <?php dynamic_sidebar('online-magazine-sidebar-left'); ?>
                 </div>
             <?php
