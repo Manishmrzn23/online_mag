@@ -1,5 +1,5 @@
 $(document).ready(function() {
-                $('.atbs-sub-col')
+                $('.om-sticky-sidebar .atbs-sub-col')
                     .theiaStickySidebar({
                         additionalMarginTop: 30
                     });

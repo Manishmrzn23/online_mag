@@ -107,6 +107,8 @@ if (!function_exists('online_magazine_sticky_header')) {
                             'container' => 'false',
                             'menu_class' => 'navigation navigation--main navigation--inline flexbox-wrap',
                             'menu_id' => 'menu-main-menu-1',
+                            'items_wrap' => '<ul id="%1$s" class="%2$s">%3$s</ul>',
+                            'fallback_cb' => false,
 
                         ) );
                         ?>

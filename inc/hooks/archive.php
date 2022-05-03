@@ -108,7 +108,6 @@ if (!function_exists('online_magazine_main_content')) {
 if (!function_exists('online_magazine_archive_content_summary')) {
 
     function online_magazine_archive_content_summary(){
-        $sidebar=get_theme_mod('online_magazine_archive_layout');
             $online_magazine_archive_content = get_theme_mod('online_magazine_archive_content', 'excerpt');
             $online_magazine_archive_excerpt_length = get_theme_mod('online_magazine_archive_excerpt_length', '100');
             $online_magazine_archive_readmore = get_theme_mod('online_magazine_archive_readmore', esc_html__('Read More', 'online-magazine'));
@@ -176,7 +175,7 @@ if (!function_exists('online_magazine_archive_content_summary')) {
 if (!function_exists('online_magazine_main_content_summary')) {
 
     function online_magazine_blog_content_summary(){
-        $sidebar=get_theme_mod('online_magazine_archive_layout');
+
             $online_magazine_archive_content = get_theme_mod('online_magazine_archive_content', 'excerpt');
             $online_magazine_archive_excerpt_length = get_theme_mod('online_magazine_archive_excerpt_length', '100');
             $online_magazine_archive_readmore = get_theme_mod('online_magazine_archive_readmore', esc_html__('Read More', 'online-magazine'));

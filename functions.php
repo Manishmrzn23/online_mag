@@ -395,14 +395,7 @@ function online_magazine_change_div_html($out){
 	return $out;
 
 }
-add_action( 'template_redirect', 'redreict_to_custom_404_page' );
-function redreict_to_custom_404_page(){
-    // check if is a 404 error
-    if( is_404()  ){
-        wp_redirect( home_url( '/404.php' ) );
-        exit();
-    }
-}
+
 
 
 
